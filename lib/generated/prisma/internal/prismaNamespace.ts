@@ -407,7 +407,8 @@ export const ModelName = {
   SavedView: 'SavedView',
   Component: 'Component',
   Decision: 'Decision',
-  Dependency: 'Dependency'
+  Dependency: 'Dependency',
+  SecurityEvent: 'SecurityEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -423,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "passkey" | "twoFactor" | "auditLog" | "savedView" | "component" | "decision" | "dependency"
+    modelProps: "user" | "session" | "account" | "verification" | "passkey" | "twoFactor" | "auditLog" | "savedView" | "component" | "decision" | "dependency" | "securityEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1241,6 +1242,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SecurityEvent: {
+      payload: Prisma.$SecurityEventPayload<ExtArgs>
+      fields: Prisma.SecurityEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SecurityEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SecurityEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>
+        }
+        findFirst: {
+          args: Prisma.SecurityEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SecurityEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>
+        }
+        findMany: {
+          args: Prisma.SecurityEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>[]
+        }
+        create: {
+          args: Prisma.SecurityEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>
+        }
+        createMany: {
+          args: Prisma.SecurityEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SecurityEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>[]
+        }
+        delete: {
+          args: Prisma.SecurityEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>
+        }
+        update: {
+          args: Prisma.SecurityEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.SecurityEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SecurityEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SecurityEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.SecurityEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecurityEventPayload>
+        }
+        aggregate: {
+          args: Prisma.SecurityEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSecurityEvent>
+        }
+        groupBy: {
+          args: Prisma.SecurityEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SecurityEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SecurityEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SecurityEventCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1440,6 +1515,23 @@ export const DependencyScalarFieldEnum = {
 export type DependencyScalarFieldEnum = (typeof DependencyScalarFieldEnum)[keyof typeof DependencyScalarFieldEnum]
 
 
+export const SecurityEventScalarFieldEnum = {
+  id: 'id',
+  kind: 'kind',
+  severity: 'severity',
+  ip: 'ip',
+  path: 'path',
+  userAgent: 'userAgent',
+  count: 'count',
+  banned: 'banned',
+  detail: 'detail',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SecurityEventScalarFieldEnum = (typeof SecurityEventScalarFieldEnum)[keyof typeof SecurityEventScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1547,6 +1639,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'SecurityEventSeverity'
+ */
+export type EnumSecurityEventSeverityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SecurityEventSeverity'>
+    
+
+
+/**
+ * Reference to a field of type 'SecurityEventSeverity[]'
+ */
+export type ListEnumSecurityEventSeverityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SecurityEventSeverity[]'>
     
 
 
@@ -1725,6 +1831,7 @@ export type GlobalOmitConfig = {
   component?: Prisma.ComponentOmit
   decision?: Prisma.DecisionOmit
   dependency?: Prisma.DependencyOmit
+  securityEvent?: Prisma.SecurityEventOmit
 }
 
 /* Types for Logging */

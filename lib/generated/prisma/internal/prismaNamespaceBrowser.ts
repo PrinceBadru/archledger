@@ -61,7 +61,8 @@ export const ModelName = {
   SavedView: 'SavedView',
   Component: 'Component',
   Decision: 'Decision',
-  Dependency: 'Dependency'
+  Dependency: 'Dependency',
+  SecurityEvent: 'SecurityEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -238,6 +239,23 @@ export const DependencyScalarFieldEnum = {
 } as const
 
 export type DependencyScalarFieldEnum = (typeof DependencyScalarFieldEnum)[keyof typeof DependencyScalarFieldEnum]
+
+
+export const SecurityEventScalarFieldEnum = {
+  id: 'id',
+  kind: 'kind',
+  severity: 'severity',
+  ip: 'ip',
+  path: 'path',
+  userAgent: 'userAgent',
+  count: 'count',
+  banned: 'banned',
+  detail: 'detail',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SecurityEventScalarFieldEnum = (typeof SecurityEventScalarFieldEnum)[keyof typeof SecurityEventScalarFieldEnum]
 
 
 export const SortOrder = {

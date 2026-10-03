@@ -2,10 +2,14 @@ import { prisma } from "@/lib/db";
 import { computeLayout } from "@/lib/catalog/layout";
 import { PageHeader } from "@/components/dashboard/page-header";
 import { Card } from "@/components/ui/card";
+import { requireAccess } from "@/lib/dashboard";
+import { resourceTables } from "@/resources/server";
 
 export const dynamic = 'force-dynamic';
 
 export default async function GraphPage() {
+  await requireAccess(resourceTables.Component.resource, "read");
+  
   const components = await prisma.component.findMany();
   const dependencies = await prisma.dependency.findMany();
 

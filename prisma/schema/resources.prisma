@@ -1,5 +1,5 @@
 // Generated from the descriptors in resources/. Edit a descriptor, not this.
-// generated:start hash=38859e78de51
+// generated:start hash=73c0e19a7913
 model Component {
   id String @id @default(uuid())
   name String @unique
@@ -42,5 +42,29 @@ model Dependency {
   @@index([targetId])
   @@index([createdAt])
   @@map("dependencies")
+}
+
+enum SecurityEventSeverity {
+  low
+  medium
+  high
+}
+
+model SecurityEvent {
+  id String @id @default(uuid())
+  kind String
+  severity SecurityEventSeverity
+  ip String
+  path String
+  userAgent String? @map("user_agent") @db.Text
+  count Int
+  banned Boolean?
+  detail String? @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([createdAt])
+  @@index([severity])
+  @@map("security_events")
 }
 // generated:end

@@ -96,3 +96,8 @@ export type Decision = Prisma.DecisionModel
  * 
  */
 export type Dependency = Prisma.DependencyModel
+/**
+ * Model SecurityEvent
+ * 
+ */
+export type SecurityEvent = Prisma.SecurityEventModel

@@ -22,9 +22,13 @@ const getCachedScores = cached(
   { tags: [resourceTag("Component"), resourceTag("Dependency")] }
 );
 
+import { requireAccess } from "@/lib/dashboard";
+import { resourceTables } from "@/resources/server";
+
 export const dynamic = 'force-dynamic';
 
 export default async function MetricsPage() {
+  await requireAccess(resourceTables.Component.resource, "read");
   const scores = await getCachedScores();
 
   return (

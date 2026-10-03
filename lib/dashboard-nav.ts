@@ -1,6 +1,6 @@
 // Extra dashboard sidebar links (maintained by flare generators such as `flare gen security`).
 // Add your own links outside the generated block.
-// generated:start
+// generated:start hash=9f64464593c4
 export interface DashboardLink {
   label: string;
   href: string;

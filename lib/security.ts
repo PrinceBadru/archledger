@@ -1,13 +1,30 @@
-// Request protection for worker/index.ts. Security is off until you run
-// `flare gen security`, which rewrites the generated block below.
-// generated:start
-/** Minimal ExecutionContext surface worker/index.ts passes in. */
+// Dummy security implementation for Next.js stack
+import { getDb } from "./db";
+import { Prisma } from "./generated/prisma/client";
+
 export interface SecurityContext {
   waitUntil(promise: Promise<unknown>): void;
 }
 
-/** Security is not enabled yet: every request goes straight to the app. */
-export async function protect(_request: Request, _env: unknown, _ctx: SecurityContext, next: () => Promise<Response>): Promise<Response> {
-  return next();
+export function security() {
+  return {
+    protect: async (_req: Request, _ctx: unknown, next: () => Promise<Response>) => next(),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    ban: async (..._args: unknown[]) => {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    unban: async (..._args: unknown[]) => {}
+  };
 }
-// generated:end
+
+export function zoneClient() {
+  return null;
+}
+
+export async function logSecurityEvent(event: Prisma.SecurityEventCreateInput): Promise<void> {
+  await getDb().securityEvent.create({ data: event });
+}
+
+export function protect(request: Request, _env: unknown, ctx: SecurityContext, next: () => Promise<Response>): Promise<Response> {
+  return security().protect(request, ctx, next);
+}
+
