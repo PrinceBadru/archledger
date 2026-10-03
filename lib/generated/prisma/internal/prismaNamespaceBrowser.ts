@@ -58,7 +58,10 @@ export const ModelName = {
   Passkey: 'Passkey',
   TwoFactor: 'TwoFactor',
   AuditLog: 'AuditLog',
-  SavedView: 'SavedView'
+  SavedView: 'SavedView',
+  Component: 'Component',
+  Decision: 'Decision',
+  Dependency: 'Dependency'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -197,6 +200,44 @@ export const SavedViewScalarFieldEnum = {
 } as const
 
 export type SavedViewScalarFieldEnum = (typeof SavedViewScalarFieldEnum)[keyof typeof SavedViewScalarFieldEnum]
+
+
+export const ComponentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  tags: 'tags',
+  lifecycleStage: 'lifecycleStage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ComponentScalarFieldEnum = (typeof ComponentScalarFieldEnum)[keyof typeof ComponentScalarFieldEnum]
+
+
+export const DecisionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  body: 'body',
+  state: 'state',
+  tags: 'tags',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DecisionScalarFieldEnum = (typeof DecisionScalarFieldEnum)[keyof typeof DecisionScalarFieldEnum]
+
+
+export const DependencyScalarFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  targetId: 'targetId',
+  type: 'type',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DependencyScalarFieldEnum = (typeof DependencyScalarFieldEnum)[keyof typeof DependencyScalarFieldEnum]
 
 
 export const SortOrder = {

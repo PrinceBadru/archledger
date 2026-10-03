@@ -1,0 +1,46 @@
+// Generated from the descriptors in resources/. Edit a descriptor, not this.
+// generated:start hash=38859e78de51
+model Component {
+  id String @id @default(uuid())
+  name String @unique
+  description String?
+  tags String?
+  lifecycleStage String @map("lifecycle_stage")
+  sourceDependencies Dependency[] @relation("Dependency_sourceId")
+  targetDependencies Dependency[] @relation("Dependency_targetId")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([createdAt])
+  @@map("components")
+}
+
+model Decision {
+  id String @id @default(uuid())
+  title String
+  body String @db.Text
+  state String
+  tags String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([createdAt])
+  @@map("decisions")
+}
+
+model Dependency {
+  id String @id @default(uuid())
+  sourceId String @map("source_id")
+  source Component @relation("Dependency_sourceId", fields: [sourceId], references: [id], onDelete: Restrict)
+  targetId String @map("target_id")
+  target Component @relation("Dependency_targetId", fields: [targetId], references: [id], onDelete: Restrict)
+  type String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([sourceId])
+  @@index([targetId])
+  @@index([createdAt])
+  @@map("dependencies")
+}
+// generated:end

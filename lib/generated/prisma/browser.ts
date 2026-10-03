@@ -57,3 +57,18 @@ export type AuditLog = Prisma.AuditLogModel
  * A saved set of filters on a resource's table.
  */
 export type SavedView = Prisma.SavedViewModel
+/**
+ * Model Component
+ * 
+ */
+export type Component = Prisma.ComponentModel
+/**
+ * Model Decision
+ * 
+ */
+export type Decision = Prisma.DecisionModel
+/**
+ * Model Dependency
+ * 
+ */
+export type Dependency = Prisma.DependencyModel
