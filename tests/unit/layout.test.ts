@@ -22,7 +22,7 @@ describe("layout", () => {
 
   it("handles empty input", () => {
     const result = computeLayout([], []);
-    expect(result).toEqual([]);
+    expect(result).toEqual({ nodes: [], width: 0, height: 0 });
   });
 
   it("spreads siblings evenly on the X axis", () => {

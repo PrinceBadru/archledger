@@ -102,6 +102,10 @@ export function computeLayout(nodes: Node[], edges: Edge[]): { nodes: LayoutNode
     });
   });
 
+  if (result.length === 0) {
+    return { nodes: [], width: 0, height: 0 };
+  }
+
   let minX = Infinity;
   let minY = Infinity;
   let maxX = -Infinity;

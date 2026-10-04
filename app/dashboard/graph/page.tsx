@@ -4,6 +4,8 @@ import { PageHeader } from "@/components/dashboard/page-header";
 import { Card } from "@/components/ui/card";
 import { requireAccess } from "@/lib/dashboard";
 import { resourceTables } from "@/resources/server";
+import { InteractiveGraph } from "@/components/dashboard/interactive-graph";
+import Link from "next/link";
 
 export const dynamic = 'force-dynamic';
 
@@ -25,8 +27,8 @@ export default async function GraphPage() {
   return (
     <div className="flex flex-col h-full w-full">
       <PageHeader title="Architecture Graph" />
-      <div className="flex-1 overflow-auto relative p-8 bg-gray-50 dark:bg-gray-900 rounded-lg m-4">
-        <div className="relative" style={{ minWidth: layoutWidth + PADDING * 2, minHeight: layoutHeight + PADDING * 2 }}>
+      <div className="flex-1 m-4 h-[calc(100vh-120px)]">
+        <InteractiveGraph width={layoutWidth + PADDING * 2} height={layoutHeight + PADDING * 2}>
           <svg className="absolute top-0 left-0 pointer-events-none" style={{ width: layoutWidth + PADDING * 2, height: layoutHeight + PADDING * 2 }}>
              {edges.map(e => {
                 const source = layoutNodes.find(n => n.id === e.sourceId);
@@ -54,21 +56,23 @@ export default async function GraphPage() {
              const layout = layoutNodes.find(n => n.id === c.id);
              if (!layout) return null;
              return (
-               <Card key={c.id} 
-                    className="absolute flex flex-col justify-center items-center text-center overflow-hidden"
-                    style={{
-                      left: layout.x - NODE_WIDTH / 2 + PADDING,
-                      top: layout.y + PADDING,
-                      width: NODE_WIDTH,
-                      height: NODE_HEIGHT
-                    }}>
-                 <h3 className="font-semibold text-lg truncate w-full px-2">{c.name}</h3>
-                 <p className="text-sm text-gray-500 mt-1">{c.lifecycleStage}</p>
-                 {c.tags && <p className="text-xs text-blue-500 mt-2 truncate w-full px-2">{c.tags}</p>}
-               </Card>
+               <Link href={`/dashboard/components/${c.id}`} key={c.id}>
+                 <Card 
+                      className="absolute flex flex-col justify-center items-center text-center overflow-hidden cursor-pointer hover:border-blue-500 hover:shadow-lg transition-all"
+                      style={{
+                        left: layout.x - NODE_WIDTH / 2 + PADDING,
+                        top: layout.y + PADDING,
+                        width: NODE_WIDTH,
+                        height: NODE_HEIGHT
+                      }}>
+                   <h3 className="font-semibold text-lg truncate w-full px-2">{c.name}</h3>
+                   <p className="text-sm text-gray-500 mt-1">{c.lifecycleStage}</p>
+                   {c.tags && <p className="text-xs text-blue-500 mt-2 truncate w-full px-2">{c.tags}</p>}
+                 </Card>
+               </Link>
              )
           })}
-        </div>
+        </InteractiveGraph>
       </div>
     </div>
   )

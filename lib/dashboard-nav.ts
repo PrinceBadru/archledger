@@ -16,6 +16,7 @@ export const dashboardLinks: DashboardLink[] = [
   { label: "Graph", href: "/dashboard/graph", icon: "share-2" },
   { label: "Metrics", href: "/dashboard/metrics", icon: "activity" },
   { label: "Costs", href: "/dashboard/costs", icon: "wallet" },
+  { label: "Security Events", href: "/dashboard/security-events", icon: "shield" },
   ...generatedDashboardLinks,
   { label: "API reference", href: "/api/reference", icon: "book" },
 ];
