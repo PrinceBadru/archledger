@@ -30,7 +30,7 @@ async function main() {
   await prisma.account.create({
     data: {
       userId: user.id,
-      accountId: user.email,
+      accountId: user.id,
       providerId: 'credential',
       password: hashed,
     }
