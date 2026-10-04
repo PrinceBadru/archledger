@@ -25,11 +25,10 @@ Welcome to ArchLedger, your system architecture catalogue. This guide covers how
    Run the Prisma migrations to set up your schema and generate the client:
    ```bash
    pnpm db:migrate
-   pnpm db:generate
    ```
 
 4. **Seed the Database**
-   Populate the database with sample components, decisions, and dependencies:
+   Populate the database with a demo user, sample components, decisions, and dependencies:
    ```bash
    pnpm db:seed
    ```
