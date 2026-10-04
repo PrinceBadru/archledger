@@ -26,7 +26,7 @@ export interface ComponentData {
 }
 
 const NODE_WIDTH = 200;
-const NODE_HEIGHT = 100;
+const NODE_HEIGHT = 120;
 const PADDING = 100;
 
 export function InteractiveGraph({
@@ -243,7 +243,7 @@ export function InteractiveGraph({
                 >
                   <Link 
                     href={`/dashboard/components/${c.id}`} 
-                    className="w-full h-full flex flex-col items-center justify-center pointer-events-auto" 
+                    className="w-full h-full flex flex-col items-center justify-center pointer-events-auto p-2" 
                     draggable={false} 
                     onDragStart={e => e.preventDefault()}
                     onClick={(e) => {
@@ -253,9 +253,17 @@ export function InteractiveGraph({
                       }
                     }}
                   >
-                    <h3 className="font-semibold text-lg truncate w-full px-2">{c.name}</h3>
-                    <p className="text-sm text-gray-500 mt-1 pointer-events-none">{c.lifecycleStage}</p>
-                    {c.tags && <p className="text-xs text-blue-500 mt-2 truncate w-full px-2 pointer-events-none">{c.tags}</p>}
+                    <h3 className="font-semibold text-sm leading-normal line-clamp-2">{c.name}</h3>
+                    <p className="text-[11px] text-gray-500 mt-1 pointer-events-none border border-gray-200 dark:border-gray-700 rounded-full px-2 py-0.5">{c.lifecycleStage}</p>
+                    {c.tags && (
+                      <div className="flex gap-1 mt-2 flex-wrap justify-center pointer-events-none">
+                        {c.tags.split(',').map(tag => (
+                          <span key={tag} className="text-[10px] bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded-sm px-1.5 py-0.5">
+                            {tag.trim()}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </Link>
                </Card>
              </div>

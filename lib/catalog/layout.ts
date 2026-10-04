@@ -82,7 +82,7 @@ export function computeLayout(nodes: Node[], edges: Edge[]): { nodes: LayoutNode
   });
 
   const NODE_WIDTH = 200;
-  const NODE_HEIGHT = 100;
+  const NODE_HEIGHT = 120;
   const X_SPACING = 50;
   const Y_SPACING = 100;
 

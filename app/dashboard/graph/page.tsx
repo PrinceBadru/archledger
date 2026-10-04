@@ -20,9 +20,6 @@ export default async function GraphPage() {
 
   const { nodes: layoutNodes, width: layoutWidth, height: layoutHeight } = computeLayout(nodes, edges);
 
-  const NODE_WIDTH = 200;
-  const NODE_HEIGHT = 100;
-  const PADDING = 100;
 
   return (
     <div className="flex flex-col h-full w-full overflow-hidden">
