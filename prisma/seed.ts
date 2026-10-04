@@ -1,4 +1,5 @@
 import { prisma } from '../lib/db';
+import { hashPassword } from '@flaredev/core';
 
 async function main() {
   console.log('Seeding database with 1 year of data...');
@@ -9,7 +10,6 @@ async function main() {
   await prisma.component.deleteMany();
   await prisma.decision.deleteMany();
 
-  // Create demo user
   const user = await prisma.user.upsert({
     where: { email: 'demo@archledger.com' },
     update: {},
@@ -18,6 +18,22 @@ async function main() {
       name: 'Demo User',
       role: 'admin',
     },
+  });
+
+  const hashed = await hashPassword('Password123!');
+  
+  // Clean existing credential accounts for this user to avoid duplicates
+  await prisma.account.deleteMany({
+    where: { userId: user.id, providerId: 'credential' }
+  });
+
+  await prisma.account.create({
+    data: {
+      userId: user.id,
+      accountId: user.email,
+      providerId: 'credential',
+      password: hashed,
+    }
   });
 
   const now = new Date();

@@ -35,6 +35,11 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
         </>
       }
     >
+      <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800 dark:border-blue-900/50 dark:bg-blue-900/20 dark:text-blue-300">
+        <p className="font-semibold mb-1">Try the Demo!</p>
+        <p>Email: <strong className="select-all">demo@archledger.com</strong></p>
+        <p>Password: <strong className="select-all">Password123!</strong></p>
+      </div>
       <SignInFlow
         providers={enabledSocialProviders()}
         socialPlacement={theme.social}
