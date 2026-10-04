@@ -16,28 +16,27 @@ export default async function GraphPage() {
   const nodes = components.map(c => ({ id: c.id, name: c.name }));
   const edges = dependencies.map(d => ({ sourceId: d.sourceId, targetId: d.targetId, type: d.type }));
 
-  const layoutNodes = computeLayout(nodes, edges);
+  const { nodes: layoutNodes, width: layoutWidth, height: layoutHeight } = computeLayout(nodes, edges);
 
   const NODE_WIDTH = 200;
   const NODE_HEIGHT = 100;
-  const OFFSET_X = 1500;
-  const OFFSET_Y = 100;
+  const PADDING = 100;
 
   return (
     <div className="flex flex-col h-full w-full">
       <PageHeader title="Architecture Graph" />
       <div className="flex-1 overflow-auto relative p-8 bg-gray-50 dark:bg-gray-900 rounded-lg m-4">
-        <div className="relative w-full h-full min-h-[3000px] min-w-[3000px]">
-          <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ minHeight: 3000, minWidth: 3000 }}>
+        <div className="relative" style={{ minWidth: layoutWidth + PADDING * 2, minHeight: layoutHeight + PADDING * 2 }}>
+          <svg className="absolute top-0 left-0 pointer-events-none" style={{ width: layoutWidth + PADDING * 2, height: layoutHeight + PADDING * 2 }}>
              {edges.map(e => {
                 const source = layoutNodes.find(n => n.id === e.sourceId);
                 const target = layoutNodes.find(n => n.id === e.targetId);
                 if (!source || !target) return null;
                 
-                const startX = source.x + OFFSET_X;
-                const startY = source.y + OFFSET_Y + NODE_HEIGHT;
-                const endX = target.x + OFFSET_X;
-                const endY = target.y + OFFSET_Y;
+                const startX = source.x + PADDING;
+                const startY = source.y + PADDING + NODE_HEIGHT;
+                const endX = target.x + PADDING;
+                const endY = target.y + PADDING;
                 
                 return (
                   <g key={`${e.sourceId}-${e.targetId}`}>
@@ -58,8 +57,8 @@ export default async function GraphPage() {
                <Card key={c.id} 
                     className="absolute flex flex-col justify-center items-center text-center overflow-hidden"
                     style={{
-                      left: layout.x - NODE_WIDTH / 2 + OFFSET_X,
-                      top: layout.y + OFFSET_Y,
+                      left: layout.x - NODE_WIDTH / 2 + PADDING,
+                      top: layout.y + PADDING,
                       width: NODE_WIDTH,
                       height: NODE_HEIGHT
                     }}>

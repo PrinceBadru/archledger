@@ -12,7 +12,7 @@ export interface LayoutNode extends Node {
   y: number;
 }
 
-export function computeLayout(nodes: Node[], edges: Edge[]): LayoutNode[] {
+export function computeLayout(nodes: Node[], edges: Edge[]): { nodes: LayoutNode[], width: number, height: number } {
   const inDegree = new Map<string, number>();
   const graph = new Map<string, string[]>();
   const layer = new Map<string, number>();
@@ -102,5 +102,25 @@ export function computeLayout(nodes: Node[], edges: Edge[]): LayoutNode[] {
     });
   });
 
-  return result;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  result.forEach(n => {
+    if (n.x < minX) minX = n.x;
+    if (n.y < minY) minY = n.y;
+    if (n.x > maxX) maxX = n.x;
+    if (n.y > maxY) maxY = n.y;
+  });
+
+  const width = maxX - minX + NODE_WIDTH;
+  const height = maxY - minY + NODE_HEIGHT;
+
+  result.forEach(n => {
+    n.x = n.x - minX;
+    n.y = n.y - minY;
+  });
+
+  return { nodes: result, width, height };
 }

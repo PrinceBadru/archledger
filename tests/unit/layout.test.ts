@@ -9,7 +9,7 @@ describe("layout", () => {
       { sourceId: "B", targetId: "C" },
     ];
 
-    const result = computeLayout(nodes, edges);
+    const { nodes: result } = computeLayout(nodes, edges);
 
     expect(result).toHaveLength(3);
     const nodeA = result.find((n) => n.id === "A")!;
@@ -32,7 +32,7 @@ describe("layout", () => {
       { sourceId: "Root", targetId: "Child2" },
     ];
 
-    const result = computeLayout(nodes, edges);
+    const { nodes: result } = computeLayout(nodes, edges);
 
     const child1 = result.find((n) => n.id === "Child1")!;
     const child2 = result.find((n) => n.id === "Child2")!;
