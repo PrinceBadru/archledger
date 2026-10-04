@@ -44,9 +44,9 @@ export const site = {
   ],
   /** Shown on the sign-in screen of themes with a quote panel. */
   testimonial: {
-    quote: "ArchLedger gave us immediate visibility into our complex microservices. We finally know how everything connects.",
-    author: "Alex Rivera",
-    role: "Lead Systems Architect",
+    quote: "To build the ultimate source of truth for engineering teams—where architectural diagrams are always up-to-date, dependencies are never a mystery, and the 'why' behind every system is perfectly preserved.",
+    author: "ArchLedger",
+    role: "Product Vision",
   },
   links: {
     terms: "/terms",
