@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect, MouseEvent as ReactMouseEvent, WheelEvent as ReactWheelEvent } from "react";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
+import { Maximize2, Minimize2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export interface LayoutNode {
   id: string;
@@ -57,20 +59,22 @@ export function InteractiveGraph({
   // Node dragging state
   const [draggingNode, setDraggingNode] = useState<string | null>(null);
   const [hasDraggedNode, setHasDraggedNode] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       const scaleX = rect.width / initialWidth;
       const scaleY = rect.height / initialHeight;
-      const initialScale = Math.min(Math.max(Math.min(scaleX, scaleY) * 0.9, 0.2), 1);
+      // Ensure the scale doesn't drop below 0.75 so text remains readable
+      const initialScale = Math.max(Math.min(scaleX, scaleY) * 0.9, 0.75);
       
       const initialX = (rect.width - initialWidth * initialScale) / 2;
       const initialY = (rect.height - initialHeight * initialScale) / 2;
       
       setTransform({ x: initialX, y: initialY, scale: initialScale });
     }
-  }, [initialWidth, initialHeight]);
+  }, [initialWidth, initialHeight, isFullscreen]);
 
   const handleWheel = (e: ReactWheelEvent) => {
     e.preventDefault();
@@ -160,15 +164,27 @@ export function InteractiveGraph({
   return (
     <div 
       ref={containerRef}
-      className={`w-full h-full overflow-hidden relative rounded-lg border bg-gray-50 dark:bg-gray-900 dark:border-gray-800 ${isPanning ? 'cursor-grabbing' : 'cursor-grab'}`}
+      className={`${isFullscreen ? 'fixed inset-0 z-50 rounded-none' : 'relative w-full h-full rounded-lg'} overflow-hidden border bg-gray-50 dark:bg-gray-900 dark:border-gray-800 ${isPanning ? 'cursor-grabbing' : 'cursor-grab'}`}
       onWheel={handleWheel}
       onMouseDown={handleContainerMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      <div className="absolute inset-0 pointer-events-none flex items-start p-2 text-xs text-gray-400 z-10">
-        Scroll to pan. Ctrl+Scroll (or pinch) to zoom. Drag nodes to move them. Click node to open.
+      <div className="absolute inset-0 pointer-events-none flex items-start justify-between p-2 text-xs text-gray-400 z-10">
+        <span>Scroll to pan. Ctrl+Scroll (or pinch) to zoom. Drag nodes to move them. Click node to open.</span>
+      </div>
+      
+      <div className="absolute top-2 right-2 z-20">
+        <Button 
+          variant="outline" 
+          size="icon"
+          onClick={() => setIsFullscreen(!isFullscreen)}
+          className="bg-white/50 backdrop-blur dark:bg-black/50"
+          title={isFullscreen ? "Exit full screen" : "Enter full screen"}
+        >
+          {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+        </Button>
       </div>
       
       <div 
