@@ -5,9 +5,9 @@ import type { ThemeName } from "./theme";
  * the page titles read from here. Edit freely.
  */
 export const site = {
-  name: "archledger",
-  tagline: "The fastest way to run your business",
-  description: "archledger keeps your team, your customers and your data in one place, and it's live on the edge in every region.",
+  name: "ArchLedger",
+  tagline: "Your System Architecture, Demystified",
+  description: "An interactive System Catalogue that keeps your team's microservices, infrastructure, and architectural decisions organized in a single pane of glass.",
   /**
    * The look of the whole app: sign-in screens, dashboard, admin and home page.
    * One of: default, coral, amber, sky, mono, emerald. FLARE_THEME (shell or .env)
@@ -24,33 +24,33 @@ export const site = {
     forms: "sheet" as "sheet" | "page",
   },
   /** The small pill above the home page headline; set to null to hide it. */
-  announcement: { label: "New", text: "Passkeys and two-factor sign-in are here", href: "/sign-up" } as { label: string; text: string; href: string } | null,
+  announcement: { label: "New", text: "Interactive Obsidian-Style Graph Mapping", href: "/sign-up" } as { label: string; text: string; href: string } | null,
   /** The home page's feature grid (icon names from lucide.dev). */
   features: [
-    { icon: "zap", title: "Fast everywhere", description: "Served from the edge in every region, so pages load in milliseconds wherever your customers are." },
-    { icon: "shield-check", title: "Secure by default", description: "Passkeys, two-factor sign-in, roles and rate limits, switched on from day one." },
-    { icon: "layout-dashboard", title: "One place for your data", description: "Every record your team keeps, with search, filters and an admin built in." },
-    { icon: "users", title: "Built for teams", description: "Invite your team, give each person the right access, and see who changed what." },
-    { icon: "plug", title: "Connects to your tools", description: "A documented API for every record, ready for your scripts and integrations." },
-    { icon: "credit-card", title: "Billing when you need it", description: "Plans, checkout and invoices through Stripe, without building a billing system." },
+    { icon: "layout-dashboard", title: "Interactive Graph", description: "Zoom, pan, and explore your entire system architecture with our Obsidian-style visual map." },
+    { icon: "plug", title: "Component Catalog", description: "Track all your microservices, databases, and APIs with detailed lifecycle stages and metadata." },
+    { icon: "users", title: "Dependency Mapping", description: "Instantly understand the blast radius of changes by tracking upstream and downstream dependencies." },
+    { icon: "shield-check", title: "Security Events", description: "Monitor and manage security events tied directly to specific infrastructure nodes." },
+    { icon: "zap", title: "Architecture Decisions", description: "Log and search historical ADRs so your team always knows why a system was built." },
+    { icon: "credit-card", title: "Metrics & Costs", description: "Built-in dashboards to measure operational metrics and visualize infrastructure spending." },
   ],
   /** Placeholder names for the logo strip: replace them with your customers (or remove the strip). */
-  customers: ["Acme", "Globex", "Initech", "Vandelay", "Northwind", "Brightline"],
+  customers: ["Acme Corp", "Globex", "Initech", "Massive Dynamic", "Stark Industries"],
   /** Shown beside the sign-up form. */
   highlights: [
-    "Set up in minutes, with nothing to install",
-    "Secure sign-in with passkeys and two-factor",
-    "Your data stays yours: export it any time",
+    "Interactive map of your entire tech stack",
+    "Track Architecture Decision Records (ADRs)",
+    "Monitor infrastructure costs and security events",
   ],
   /** Shown on the sign-in screen of themes with a quote panel. */
   testimonial: {
-    quote: "We moved our whole workflow over in an afternoon. The team hasn't looked back.",
+    quote: "ArchLedger gave us immediate visibility into our complex microservices. We finally know how everything connects.",
     author: "Alex Rivera",
-    role: "Head of Operations",
+    role: "Lead Systems Architect",
   },
   links: {
     terms: "/terms",
     privacy: "/privacy",
-    support: "mailto:support@example.com",
+    support: "mailto:support@archledger.com",
   },
 };

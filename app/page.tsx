@@ -66,8 +66,8 @@ export default function Home() {
         {/* Features */}
         <section id="features" className="mx-auto max-w-6xl px-6 py-24">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-4xl text-balance">Everything your team needs, in one place</h2>
-            <p className="mt-4 text-lg text-foreground-muted">{site.name} takes care of the busywork so you can focus on your customers.</p>
+            <h2 className="text-4xl text-balance">Master your microservices, all in one place</h2>
+            <p className="mt-4 text-lg text-foreground-muted">{site.name} automatically tracks your architecture so you can focus on building great products.</p>
           </div>
           <ul className="mt-16 grid gap-px overflow-hidden rounded-[calc(var(--radius)+8px)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {site.features.map((feature) => {
@@ -100,8 +100,8 @@ export default function Home() {
         <section className="px-6 py-24">
           <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 overflow-hidden rounded-[calc(var(--radius)+12px)] bg-foreground px-8 py-16 text-center text-background">
             <div aria-hidden="true" className="absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand opacity-40 blur-3xl" />
-            <h2 className="relative text-4xl text-balance">Get started with {site.name} today</h2>
-            <p className="relative max-w-xl text-background/70">Create an account in seconds. No credit card, nothing to install.</p>
+            <h2 className="relative text-4xl text-balance">Map your architecture with {site.name} today</h2>
+            <p className="relative max-w-xl text-background/70">Create a free account in seconds. Easily document your first system component.</p>
             <Link href="/sign-up" className="relative inline-flex h-12 items-center gap-2 rounded-[var(--button-radius)] bg-background px-6 font-medium text-foreground hover:bg-background/90">
               Create your account <ArrowRightIcon className="size-4" />
             </Link>
